@@ -47,7 +47,11 @@ export class AuthService {
   }
 
   loggedIn() {
-    return tokenNotExpired;
+    if (this.authToken == null || this.authToken === undefined) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   logout() {

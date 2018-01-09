@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const config = require('./config/database');
+const passport = require('passport');
 
 const app = express();
 
@@ -18,6 +19,12 @@ app.use(cors());
 
 // body parser middleware
 app.use(bodyParser());
+
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
 
 // static folder
 app.use(express.static(path.join(__dirname, 'public')));
